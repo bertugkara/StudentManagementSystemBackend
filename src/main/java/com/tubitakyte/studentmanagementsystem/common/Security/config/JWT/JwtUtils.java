@@ -22,7 +22,7 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
-       // System.out.println("Ben jwt utils generate jwt token'ım");
+        System.out.println("Ben jwt utils generate jwt token'ım");
         UserDetailsManager userPrincipal = (UserDetailsManager) authentication.getPrincipal();
 
         return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
@@ -31,14 +31,14 @@ public class JwtUtils {
     }
 
     public String getUserNameFromJwtToken(String token) {
-     //   System.out.println("Ben getUserNameFromJwtToken'ım");
+        System.out.println("Ben getUserNameFromJwtToken'ım");
 
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateJwtToken(String authToken) throws SignatureException {
         try {
-       //     System.out.println("Ben validateJWTToken'ım");
+          System.out.println("Ben validateJWTToken'ım");
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (MalformedJwtException e) {

@@ -31,10 +31,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
-         //   System.out.println("ben AuthTokenFilter'ın do filter Internal methoduyum");
+
+
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-            //    System.out.println("dofilterinternal If'i geçtim");
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
                 UserDetails userDetails = springUserDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication =
@@ -45,7 +45,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-             //   System.out.println(SecurityContextHolder.getContext().toString());
 
             }
         } catch (Exception e) {

@@ -5,7 +5,7 @@ public class MessageResponse {
 
     public MessageResponse(String message) {
         this.message = message;
-        //System.out.println("ben message response");
+        System.out.println("ben message response");
     }
 
     public String getMessage() {

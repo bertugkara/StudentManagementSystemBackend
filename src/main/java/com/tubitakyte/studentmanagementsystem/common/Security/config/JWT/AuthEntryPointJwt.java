@@ -21,7 +21,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
             throws IOException, ServletException {
-     //   System.out.println("Ben AuthEntryPointJWT'nin commence fonksiyonuyum.");
+        System.out.println("Ben AuthEntryPointJWT'nin commence fonksiyonuyum.");
         logger.error("Unauthorized error: {}", authException.getMessage());
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
@@ -34,6 +34,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         body.put("path", request.getServletPath());
 
         final ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.toString());
         mapper.writeValue(response.getOutputStream(), body);
     }
 }
